@@ -41,9 +41,9 @@
                 var pronoun; //definir a variável que contém o pronome da segunda frase.
 
                 //verificar qual o valor do género do indivíduo e definir o pronome para o caso apropriado
-                if (this.gender == 'male' || this.gender == 'Male' || this.gender == 'm' || this.gender == 'M') pronoun = 'He likes';
-                else if (this.gender === 'female' || this.gender === 'Female' || this.gender === 'f' || this.gender === 'F') pronoun = 'She likes';
-                else pronoun = 'They like';
+                if (this.gender == 'male' || this.gender == 'Male' || this.gender == 'm' || this.gender == 'M') pronoun = 'He likes ';
+                else if (this.gender === 'female' || this.gender === 'Female' || this.gender === 'f' || this.gender === 'F') pronoun = 'She likes ';
+                else pronoun = 'They like ';
 
                 //adicionar à string o resultado anterior
                 string += pronoun;
@@ -58,12 +58,15 @@
                         else string += this.interests[i] + ', ';
                     }
                 }
+                return string;
             };
             this.greeting = function() {
                 return 'Hi! I\'m ' + this.name.first + '.';
             };
         }
 
-        var person1 = new Person('Rui', 'Gonçalves', 21, 'male', ['gaming', 'coding']);
+        var person1 = new Person('Rui', 'Gonçalves', 21, 'male', ['gaming', 'coding', 'driving']);
+        var person2 = new Person('Sílvia', 'Baptista', 26, 'female', ['gaming', 'coding', 'crafting']);
+        var person3 = new Person('Maria', 'Gomes', 33, 'neutral', ['sewing', 'painting']);
     </script>
 </html>
