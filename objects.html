@@ -77,5 +77,24 @@
             Person.call(this, first, last, age, gender, interests);
             this.subject = subject;
         }
+        
+        //create a new object and make it the value of Teacher.prototype
+        Teacher.prototype = Object.create(Person.prototype);
+        //returns Teacher() plus inheriting from Person()
+        Teacher.prototype.constructor = Teacher;
+
+        var teacher1 = new Teacher('Sara', 'Silva', 34, 'female', ['hiking','cross-stitch'],'math');
+
+        //giving Teacher() a new greeting() function
+        //returns the teacher's greeting, defines an appropriate name prefix
+        Teacher.prototype.greeting = function() {
+            var prefix;
+
+            if (this.gender === 'male' || this.gender === 'Male' || this.gender === 'm' || this.gender === 'M') prefix = 'Mr.';
+            else if (this.gender === 'female' || this.gender === 'Female' || this.gender === 'f' || this.gender === 'F') prefix = 'Mrs.';
+            else prefix = 'Mx.';
+            
+            return 'Hello. My name is ' + prefix + ' ' + this.name.last + ', and I teach ' + this.subject + '.';
+        };
     </script>
 </html>
