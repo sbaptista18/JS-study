@@ -103,25 +103,39 @@
 
         var teacher1 = new Teacher('Sara', 'Silva', 34, 'female', ['hiking','cross-stitch'],'math');
 
-        function Student(first, last, age, gender, year, interests){
+        function Student(first, last, age, gender, grade, interests){
             Person.call(this, first, last, age, gender, interests);
-            this.year = year;
+            this.grade = grade;
         }
 
         Student.prototype = Object.create(Person.prototype);
         Student.prototype.constructor = Student;
 
         Student.prototype.greeting = function() {
+            var string = 'Hi! I\'m ' + this.name.first + ' ' + this.name.last + ' and I\'m ' + this.age + ' years old. ';
             var ordinalNumber;
 
-            if (this.year === '1') ordinalNumber = 'st';
-            else if (this.year === '2') ordinalNumber = 'nd';
-            else if (this.year === '3') ordinalNumber = 'rd';
-            else ordinalNumber = 'th';
+            if (this.grade === 1) ordinalNumber = '1st grade';
+            else if (this.grade === 2) ordinalNumber = '2nd grade';
+            else if (this.grade === 3) ordinalNumber = '3rd grade';
+            else ordinalNumber = this.grade + 'th grade';
+
+            string += 'I attend the ' + ordinalNumber + ' and I like ';
+
+            if(this.interests.length === 1) {
+                string += this.interests[0] + '.';
+            } else if(this.interests.length === 2) {
+                string += this.interests[0] + ' and ' + this.interests[1] + '.';
+            } else {
+                for(var i = 0; i < this.interests.length; i++) {
+                    if(i === this.interests.length - 1) string += 'and ' + this.interests[i] + '.';
+                    else string += this.interests[i] + ', ';
+                }
+            }
             
-            return 'Hi! I\'m ' + this.name.first + ' ' + this.name.last + ', and I\'m at ' + this.year, ordinalNumber + ' grade.';
+            return string;
         };
 
-        var student1 = new Student('Maria', 'Sousa', 7, 'female', 1, ['playing','cars','games']);
+        var student1 = new Student('Maria', 'Sousa', 9, 'female', 4, ['playing','cars','games']);
     </script>
 </html>
