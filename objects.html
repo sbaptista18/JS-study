@@ -11,6 +11,7 @@
   </body>
 
     <script>
+        //creating an object
         var person = {
             name: {
                 first: 'Sílvia',
@@ -27,6 +28,8 @@
             }
         };
 
+        //creating the constructor function
+        //only the properties are defined here
         function Person(first, last, age, gender, interests){
             this.name = {
                 'first': first,
@@ -60,10 +63,12 @@
                 }
                 return string;
             };
-            this.greeting = function() {
-                return 'Hi! I\'m ' + this.name.first + '.';
-            };
         }
+
+        //the methods are all defined in the constructor's prototype
+        Person.prototype.greeting = function() {
+            return 'Hi! I\'m ' + this.name.first + '.';
+        };
 
         var person1 = new Person('Rui', 'Gonçalves', 21, 'male', ['gaming', 'coding', 'driving']);
         var person2 = new Person('Sílvia', 'Baptista', 26, 'female', ['gaming', 'coding', 'crafting']);
@@ -81,9 +86,8 @@
         //create a new object and make it the value of Teacher.prototype
         Teacher.prototype = Object.create(Person.prototype);
         //returns Teacher() plus inheriting from Person()
+        //This is useful because we don't need to create a new object, since the parameters are similar
         Teacher.prototype.constructor = Teacher;
-
-        var teacher1 = new Teacher('Sara', 'Silva', 34, 'female', ['hiking','cross-stitch'],'math');
 
         //giving Teacher() a new greeting() function
         //returns the teacher's greeting, defines an appropriate name prefix
@@ -96,5 +100,28 @@
             
             return 'Hello. My name is ' + prefix + ' ' + this.name.last + ', and I teach ' + this.subject + '.';
         };
+
+        var teacher1 = new Teacher('Sara', 'Silva', 34, 'female', ['hiking','cross-stitch'],'math');
+
+        function Student(first, last, age, gender, year, interests){
+            Person.call(this, first, last, age, gender, interests);
+            this.year = year;
+        }
+
+        Student.prototype = Object.create(Person.prototype);
+        Student.prototype.constructor = Student;
+
+        Student.prototype.greeting = function() {
+            var ordinalNumber;
+
+            if (this.year === '1') ordinalNumber = 'st';
+            else if (this.year === '2') ordinalNumber = 'nd';
+            else if (this.year === '3') ordinalNumber = 'rd';
+            else ordinalNumber = 'th';
+            
+            return 'Hi! I\'m ' + this.name.first + ' ' + this.name.last + ', and I\'m at ' + this.year, ordinalNumber + ' grade.';
+        };
+
+        var student1 = new Student('Maria', 'Sousa', 7, 'female', 1, ['playing','cars','games']);
     </script>
 </html>
