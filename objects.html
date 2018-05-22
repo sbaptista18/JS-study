@@ -2,12 +2,16 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Object-oriented JavaScript example</title>
+    <title>Object-oriented JavaScript example</title> 
   </head>
 
   <body>
-    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+    <header>
 
+    </header>
+    <section>
+
+    </section>
   </body>
 
     <script>
@@ -97,6 +101,8 @@
         //a more common pattern for more object definitions is to DEFINE THE PROPERTIES INSIDE THE CONSTRUCTOR, and the METHODS ON THE PROTOTYPE
         //https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes
 
+        //------- PROTOTYPAL INHERITANCE -------
+        //https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Inheritance
         //create a new object and make it the value of Teacher.prototype
         Teacher.prototype = Object.create(Person.prototype);
         //returns Teacher() plus inheriting from Person()
@@ -117,11 +123,13 @@
 
         var teacher1 = new Teacher('Sara', 'Silva', 34, 'female', ['hiking','cross-stitch'],'math');
 
+        //------- CONSTRUCTOR -------
         function Student(first, last, age, gender, grade, interests){
             Person.call(this, first, last, age, gender, interests);
             this.grade = grade;
         }
 
+        //------- PROTOTYPAL INHERITANCE -------
         Student.prototype = Object.create(Person.prototype);
         Student.prototype.constructor = Student;
 
@@ -151,5 +159,105 @@
         };
 
         var student1 = new Student('Maria', 'Sousa', 9, 'female', 4, ['playing','cars','games']);
+
+        //-------*******-------
+        //  WORKING WITH JSON
+        //-------*******-------
+
+        //https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON
+        //a JSON is a string whose format very much resembles JavaScript object literal format
+        //data types included: strings, numbers, arrays, booleans, and other object literals
+        //allows to construct a data hierarchy
+        //EXAMPLE:
+
+        var Supermarket = {
+            "name": "Continente",
+            "town": "Matosinhos",
+            "established": 1980,
+            "active": true,
+            "currency": "euro",
+            "products": [
+                {
+                    "productName": "arroz",
+                    "brands": [
+                        {
+                            "brandName": "Cigala",
+                            "stock": 20,
+                            "price": 0.99
+                        },
+                        {
+                            "brandName": "Continente",
+                            "stock": 10,
+                            "price": 0.79
+                        },
+                        {
+                            "brandName": "Pato Real",
+                            "stock": 5,
+                            "price": 1.09
+                        }
+                    ]
+                },
+                {
+                    "productName": "massa",
+                    "brands": [
+                    {
+                            "brandName": "Milaneza",
+                            "stock": 20,
+                            "price": 1.99
+                        },
+                        {
+                            "brandName": "Continente",
+                            "stock": 15,
+                            "price": 1.79
+                        },
+                        {
+                            "brandName": "Nacional",
+                            "stock": 5,
+                            "price": 2.09
+                        }
+                    ]
+                },
+                {
+                    "productName": "Bebidas",
+                    "brands": [
+                    {
+                            "brandName": "Lipton Ice Tea 1L",
+                            "stock": 20,
+                            "price": 1.99
+                        },
+                        {
+                            "brandName": "Ice Tea Continente 1L",
+                            "stock": 15,
+                            "price": 1.79
+                        },
+                        {
+                            "brandName": "Super Bock Pack 6",
+                            "stock": 5,
+                            "price": 2.09
+                        },
+                        {
+                            "brandName": "Água Luso 5L",
+                            "stock": 5,
+                            "price": 2.09
+                        }
+                    ]
+                }
+            ]
+        }
+
+        //to fetch the rice product, the input should be:
+        var productRice = Supermarket["products"][0]["productName"];
+        //to fetch the brand, the input should be:
+        var productBrand = Supermarket["products"][0]["brands"];
+
+        //JSON is purely a data format - it contains only properties, no methods.
+        //JSON requires double quotes(") to be used around strings and property names. Single quotes(') are not valid.
+        //ALWAYS validate the data, as misplaced commas or colons may return an error.
+        //ONLY quoted strings may be used as properties.
+
+        //store header and section in variables
+        var header = document.querySelector('header');
+        var section = document.querySelector('section');
+        
     </script>
 </html>

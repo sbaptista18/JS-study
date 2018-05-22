@@ -1,0 +1,74 @@
+{
+    "name": "Continente",
+    "town": "Matosinhos",
+    "established": 1980,
+    "active": true,
+    "currency": "euro",
+    "products": [
+        {
+            "productName": "arroz",
+            "brands": [
+                {
+                    "brandName": "Cigala",
+                    "stock": 20,
+                    "price": 0.99
+                },
+                {
+                    "brandName": "Continente",
+                    "stock": 10,
+                    "price": 0.79
+                },
+                {
+                    "brandName": "Pato Real",
+                    "stock": 5,
+                    "price": 1.09
+                }
+            ]
+        },
+        {
+            "productName": "massa",
+            "brands": [
+            {
+                    "brandName": "Milaneza",
+                    "stock": 20,
+                    "price": 1.99
+                },
+                {
+                    "brandName": "Continente",
+                    "stock": 15,
+                    "price": 1.79
+                },
+                {
+                    "brandName": "Nacional",
+                    "stock": 5,
+                    "price": 2.09
+                }
+            ]
+        },
+        {
+            "productName": "Bebidas",
+            "brands": [
+            {
+                    "brandName": "Lipton Ice Tea 1L",
+                    "stock": 20,
+                    "price": 1.99
+                },
+                {
+                    "brandName": "Ice Tea Continente 1L",
+                    "stock": 15,
+                    "price": 1.79
+                },
+                {
+                    "brandName": "Super Bock Pack 6",
+                    "stock": 5,
+                    "price": 2.09
+                },
+                {
+                    "brandName": "Água Luso 5L",
+                    "stock": 5,
+                    "price": 2.09
+                }
+            ]
+        }
+    ]
+}
