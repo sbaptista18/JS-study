@@ -259,5 +259,80 @@
         var header = document.querySelector('header');
         var section = document.querySelector('section');
         
+        //store the URL in a variable
+        var requestURL = 'https://raw.githubusercontent.com/sbaptista18/JS_Study/master/supermarket.json';
+        
+        //create new request object instance from the XMLHttpRequest constructor
+        var request = new XMLHttpRequest();
+
+        //open a new request
+        //takes at least two parameters: the HTTP method and URL to make request to
+        request.open('GET', requestURL);
+
+        //set the response to JSON so that XHR knows that the server will be returning JSON
+        request.responseType = 'json';
+        request.send();
+
+        //wait for the response to return from the server, then deal with it
+        request.onload = function() {
+            var superMarket = request.response;
+            populateHeader(superMarket);
+            showPoducts(superMarket);
+        }
+
+        //populate header
+        function populateHeader(jsonObj) {
+            var myH1 = document.createElement('h1'); //create <h1> element
+            myH1.textContent = jsonObj['name']; //jsonObj -> object originated from JSON
+            header.appendChild(myH1); //append textContent to <h1> element
+
+            var myPara = document.createElement('p'); //create <p> element
+            myPara.textContent = 'Cidade: ' + jsonObj['town'] + ' // Inauguração: ' + jsonObj['established'];
+            header.appendChild(myPara); //append textContent to <p> element
+        }
+
+        //create and display product details
+        function showPoducts(jsonObj) {
+            //store 'products' property of the JS object in a new variable.
+            //contains multiple objects that contain the information for each product
+            var products = jsonObj['products'];
+                
+            //loop through each object in the array
+            for (var i = 0; i < products.length; i++) {
+                //create several elements
+                var myArticle = document.createElement('article');
+                var myH2 = document.createElement('h2');
+                var myPara1 = document.createElement('p');
+                var myList = document.createElement('ul');
+
+                //set the <h2> to contain the current product name
+                myH2.textContent = products[i].productName;
+
+                //fill the <p> element with the brand's info
+                myPara1.textContent = 'Marcas:';
+                    
+                //store the brands property in another new variable called Brands
+                //contains an array that lists the current product's brands.
+                var Brands = products[i].brands;
+
+                //loop through current product's brands
+                for (var j = 0; j < Brands.length; j++) {
+                    var listItem = document.createElement('li'); //create a <li> element
+                    listItem.textContent = Brands[j]; //insert brand name
+                    myList.appendChild(listItem); //append the listItem inside the <ul> element
+                }
+
+                //append the elements inside the <article>
+                myArticle.appendChild(myH2);
+                myArticle.appendChild(myPara1);
+                myArticle.appendChild(myList);
+
+                //append <article> inside <section>
+                section.appendChild(myArticle);
+
+                //the appending order is important, as this will be the order they will be displayed inside the HTML.
+                //Converting between objects and text: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON
+            }
+        }
     </script>
 </html>
