@@ -13,13 +13,13 @@ function Shape(x,y,velX,velY,exists){
     this.y = y;
     this.velX = velX;
     this.velY = velY;
-    this.exists = exists;
+    this.exists = true;
 }
 
-function Ball(x,y,velX,velY,exists,size,color){
+function Ball(x,y,velX,velY,color,size,exists){
     Shape.call(this,x,y,velX,velY,exists);
-    this.size = size;
     this.color = color;
+    this.size = size;
 }
 
 Ball.prototype = Object.create(Shape.prototype);
@@ -67,7 +67,7 @@ Ball.prototype.collisionDetect = function() {
     }
 }
 
-/*function EvilCircle(x,y,exists){
+function EvilCircle(x,y,exists){
     Shape.call(this,x,y,20,20,exists);
     this.size = 10;
     this.color = 'white';
@@ -130,44 +130,41 @@ EvilCircle.prototype.collisionDetect = function() {
             }
         }
     }
-}*/
+}
 
 var balls = [];
 
-/*var evil = new EvilCircle(random(0,width), random(0,height), true);
-evil.setControls();*/
+var evil = new EvilCircle(random(0,width), random(0,height), true);
+evil.setControls();
 
 function loop() {
     ctx.fillStyle = 'rgba(0,0,0,0.25)';
     ctx.fillRect(0,0,width,height);
 
     while(balls.length < 25) {
-        var size = random(10,20);
         var ball = new Ball(
-            random(0 + size,width - size),
-            random(0 + size,height - size),
+            random(0,width),
+            random(0,height),
             random(-7,7),
             random(-7,7),
-            true,
             'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
-            size
+            random(10,20)
         );
         balls.push(ball);
     }
 
     for(var i = 0; i < balls.length; i++) {
-        //if(balls[i].exists) {
+        if(balls[i].exists) {
             balls[i].draw();
             balls[i].update();
             balls[i].collisionDetect();
-        //}
+        }
     }
 
-    /*evil.draw();
+    evil.draw();
     evil.checkBounds();
-    evil.collisionDetect();*/
+    evil.collisionDetect();
 
     requestAnimationFrame(loop);
 }
-
 loop();
