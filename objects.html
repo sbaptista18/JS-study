@@ -70,9 +70,14 @@
             return 'Hi! I\'m ' + this.name.first + '.';
         };
 
+        //object instances
         var person1 = new Person('Rui', 'Gonçalves', 21, 'male', ['gaming', 'coding', 'driving']);
-        var person2 = new Person('Sílvia', 'Baptista', 26, 'female', ['gaming', 'coding', 'crafting']);
-        var person3 = new Person('Maria', 'Gomes', 33, 'neutral', ['sewing', 'painting']);
+        //var person2 = new Person('Sílvia', 'Baptista', 26, 'female', ['gaming', 'coding', 'crafting']);
+        //var person3 = new Person('Maria', 'Gomes', 33, 'neutral', ['sewing', 'painting']);
+
+        //-------*******-------
+        //     CONSTRUCTOR
+        //-------*******-------
 
         //defines a constructor
         function Teacher(first, last, age, gender, interests, subject){
@@ -83,6 +88,15 @@
             this.subject = subject;
         }
         
+        //-------*******-------
+        //  OBJECT PROTOTYPES
+        //-------*******-------
+
+        //each object has a prototype object, which acts as a template object that it inherits methods and properties from.
+        //an object's prototype object may also have a prototype object
+        //a more common pattern for more object definitions is to DEFINE THE PROPERTIES INSIDE THE CONSTRUCTOR, and the METHODS ON THE PROTOTYPE
+        //https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes
+
         //create a new object and make it the value of Teacher.prototype
         Teacher.prototype = Object.create(Person.prototype);
         //returns Teacher() plus inheriting from Person()
