@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Simple DOM example</title>
+    </head>
+    <body>
+        <section>
+            <img src="dinosaur.png" alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.">
+            <p>Here we will add a link to the <a href="https://www.mozilla.org/">Mozilla homepage</a></p>
+        </section>
+        <script>
+            //There are several types of nodes in DOM:
+            //Element node -> An element, as it exists in the DOM.
+            //Root node -> Top node in the tree.
+            //Child node -> A node directly inside another node.
+            //Descendant node -> A node anywhere inside another node.
+            //Parent node -> A node which has another node inside it.
+            //Sibling node -> Nodes that sit in the same level in the DOM tree.
+            //Text node -> A node containing a text string.
+
+            //allows to select elements using CSS selectors
+            //there are others like:
+            //document.getElementById() -> selects based on the element's ID
+            //document.getElementByTagName() -> returns an array containing all the elements on the page of a given type
+            var link = document.querySelector('a');
+
+            //change the text inside the link
+            link.textContent = 'Mozilla Developer Network';
+
+            //change the URL the link is pointing to
+            link.href = 'https://developer.mozilla.org';
+
+            var sect = document.querySelector('section');
+
+            //creates a new element (paragraph)
+            var para = document.createElement('p');
+
+            //give some content to the previous element
+            para.textContent = 'We hope you enjoyed the ride.';
+
+            //append a new paragraph at the end of the section
+            sect.appendChild(para);
+
+            //add a text node to the paragraph where the link is
+            var text = document.createTextNode(' - the premier source for web development knowlegde.');
+
+            //grab the reference of the paragraph where the link is
+            var linkPara = document.querySelector('p');
+            linkPara.appendChild(text);
+        </script>
+    </body>
+</html>
