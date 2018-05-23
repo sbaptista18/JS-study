@@ -48,6 +48,17 @@
             //grab the reference of the paragraph where the link is
             var linkPara = document.querySelector('p');
             linkPara.appendChild(text);
+
+            //MOVING AND REMOVING ELEMENTS
+
+            //move the paragraph to the bottom of the section
+            sect.appendChild(linkPara);
+
+            //make a copy of the paragraph
+            var cloneP = linkPara.cloneNode();
+
+            //to remove a node there is no method, so I have to do the following:
+            linkPara.parentNode.removeChild(linkPara);
         </script>
     </body>
 </html>
