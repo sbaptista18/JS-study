@@ -29,6 +29,42 @@
         </ul>
 
         <script>
+            var list = document.querySelector('ul');
+            var input = document.querySelector('input');
+            var button = document.querySelector('button');
+
+            button.onclick = function() {
+                var inputValue = input.value;
+                input.value = '';
+
+                var listItem = document.createElement('li');
+                var spanItem = document.createElement('span');
+                var deleteButton = document.createElement('button');
+
+                //wrong answer, because was appended to the wrong element
+                //list.appendChild(spanItem);
+                //list.appendChild(deleteButton);
+
+                //correct answer
+                listItem.appendChild(spanItem);
+                listItem.appendChild(deleteButton);
+
+                //wrong syntax
+                //spanItem.textContent(inputValue);
+                //deleteButton.textContent('Delete');
+
+                //correct syntax
+                spanItem.textContent = inputValue;
+                deleteButton.textContent = 'Delete';
+
+                list.appendChild(listItem);
+
+                deleteButton.onclick = function() {
+                    listItem.parentNode.removeChild(listItem);
+                }
+
+                input.focus();
+            }
         </script>
     </body>
 </html>
