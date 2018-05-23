@@ -56,6 +56,45 @@
         </pre>
 
         <script>
+            var verseChoose = document.querySelector('select');
+            var poemDisplay = document.querySelector('pre');
+
+            verseChoose.onchange = function(){
+                var verse = verseChoose.value;
+                updateDisplay(verse);
+            }
+
+            function updateDisplay(verse){
+                //construct a relative URL pointing to the wanted text file
+                //web servers tend to be case sensitive, so some converting is needed
+                //add a space; V -> v
+                verse = verse.replace(" ", "");
+                verse = verse.toLowerCase();
+                var url = 'https://raw.githubusercontent.com/sbaptista18/JS-study/master/ajax-request/' + verse + '.txt';
+
+                //create new request object
+                var request = new XMLHttpRequest();
+
+                //specify what HTTP request method to use to request the resource from, and what its URL is
+                request.open('GET', url);
+
+                //type of response expected. 'text' is default, but it's always good to mention it.
+                request.responseType = 'text';
+
+                //fetching a resource from the network is an asynchronous operation
+                //it's needed the operation to complete in order to do anything with the response
+                request.onload = function(){
+                    poemDisplay.textContent = request.response;
+                }
+
+                //run the XHR request
+                request.send();
+
+                
+            }
+            //show text on the display when it first loads
+            updateDisplay('Verse 1');
+            verseChoose.value = 'Verse 1';
         </script>
     </body>
 </html>
