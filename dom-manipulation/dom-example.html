@@ -3,6 +3,16 @@
     <head>
         <meta charset="utf-8">
         <title>Simple DOM example</title>
+
+        <style>
+            .highlight {
+                color: white;
+                background-color: black;
+                padding: 10px;
+                width: 250px;
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
         <section>
@@ -59,6 +69,22 @@
 
             //to remove a node there is no method, so I have to do the following:
             linkPara.parentNode.removeChild(linkPara);
+
+            //MANIPULATING STYLES
+            //It's possible to get a list of all the stylesheets attached to the document using:
+            //document.stylesheets -> returns an array os CSSStyleSheet objects.
+            //it's possible to add/remove at will (explained later)
+
+            //add inline styles directly onto elements
+            //para.style.color = 'white';
+            //para.style.backgroundColor = 'black';
+            //para.style.padding = '10px';
+            //para.style.width = '250px';
+            //para.style.textAlign = 'center';
+
+            //another method:
+            //element.setAttribute(attribute, value) -> takes 2 arguments: the attribute to set, and the value wanted to set
+            para.setAttribute('class', 'highlight');
         </script>
     </body>
 </html>
